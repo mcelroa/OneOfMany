@@ -1,0 +1,34 @@
+[gd_scene load_steps=9 format=3 uid="uid://bwghoo0p6clg3"]
+
+[ext_resource type="PackedScene" uid="uid://daly08jb3wbpr" path="res://Scenes/UI/hud.tscn" id="1_wowpa"]
+[ext_resource type="PackedScene" uid="uid://o3qhis41v5e6" path="res://Scenes/Managers/task_manager.tscn" id="2_i6g32"]
+[ext_resource type="PackedScene" uid="uid://bvejjyk28tffe" path="res://Scenes/Entities/task.tscn" id="2_qxrlw"]
+[ext_resource type="PackedScene" uid="uid://8b3h275fxewx" path="res://Scenes/Entities/player.tscn" id="2_wrm1d"]
+[ext_resource type="Script" uid="uid://bnxpjuwblq618" path="res://Scripts/Data/task_definition.gd" id="3_1l0tm"]
+[ext_resource type="Resource" uid="uid://cn50g6oi1fuhf" path="res://Scripts/Data/Tasks/stir_paint.tres" id="3_3dryh"]
+[ext_resource type="Resource" uid="uid://d1awyqnh732xj" path="res://Scripts/Data/Tasks/clean_spillage.tres" id="4_wowpa"]
+[ext_resource type="PackedScene" uid="uid://ckqov1vmlwn2b" path="res://Scenes/Managers/round_manager.tscn" id="6_v158k"]
+
+[node name="Game" type="Node2D"]
+
+[node name="HUD" parent="." node_paths=PackedStringArray("task_manager", "round_manager") instance=ExtResource("1_wowpa")]
+task_manager = NodePath("../TaskManager")
+round_manager = NodePath("../RoundManager")
+
+[node name="TaskManager" parent="." instance=ExtResource("2_i6g32")]
+all_tasks = Array[ExtResource("3_1l0tm")]([ExtResource("4_wowpa"), ExtResource("3_3dryh")])
+
+[node name="RoundManager" parent="." node_paths=PackedStringArray("task_manager") instance=ExtResource("6_v158k")]
+target_tasks = 1
+task_manager = NodePath("../TaskManager")
+
+[node name="Player" parent="." instance=ExtResource("2_wrm1d")]
+position = Vector2(102, 95)
+
+[node name="Task" parent="." instance=ExtResource("2_qxrlw")]
+position = Vector2(826, 307)
+task_def = ExtResource("3_3dryh")
+
+[node name="Task2" parent="." instance=ExtResource("2_qxrlw")]
+position = Vector2(425, 496)
+task_def = ExtResource("4_wowpa")

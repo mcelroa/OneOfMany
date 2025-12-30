@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://o3qhis41v5e6"]
+
+[ext_resource type="Script" uid="uid://ddpxp3n1oiti8" path="res://Scenes/Managers/task_manager.gd" id="1_etbp7"]
+
+[node name="TaskManager" type="Node" groups=["task_manager"]]
+script = ExtResource("1_etbp7")
+
+[node name="PickTaskTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="PickTaskTimer" to="." method="on_pick_task_timer_timeout"]

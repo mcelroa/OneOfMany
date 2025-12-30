@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvejjyk28tffe"]
+
+[ext_resource type="Script" uid="uid://c5p2s8byyv3ub" path="res://Scenes/Entities/task.gd" id="1_cc1us"]
+[ext_resource type="Texture2D" uid="uid://ckwmhp2fqsey3" path="res://icon.svg" id="1_fk38o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cc1us"]
+radius = 145.0
+
+[node name="Task" type="Node2D"]
+script = ExtResource("1_cc1us")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_fk38o")
+
+[node name="InteractableArea" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea"]
+shape = SubResource("CircleShape2D_cc1us")
+
+[connection signal="body_entered" from="InteractableArea" to="." method="on_area_entered"]
+[connection signal="body_exited" from="InteractableArea" to="." method="on_area_exited"]
