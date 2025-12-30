@@ -37,7 +37,7 @@ func win() -> void:
 	
 
 func on_task_completed(total: int) -> void:
-	if !is_running:
+	if not is_running:
 		return
 	
 	tasks_done = total

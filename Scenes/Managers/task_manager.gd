@@ -29,7 +29,7 @@ func stop() -> void:
 
 
 func assign_task(task: TaskDefinition) -> void:
-	if !enabled:
+	if not enabled:
 		return
 		
 	current_task = task
@@ -38,7 +38,7 @@ func assign_task(task: TaskDefinition) -> void:
 
 
 func complete_task(task: TaskDefinition) -> void:
-	if !enabled:
+	if not enabled:
 		return
 		
 	if current_task == null:
@@ -60,7 +60,7 @@ func pick_random_task() -> TaskDefinition:
 
 
 func start_timer() -> void:
-	if !enabled:
+	if not enabled:
 		return
 		
 	pick_task_timer.start()

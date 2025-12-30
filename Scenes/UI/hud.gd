@@ -1,7 +1,6 @@
 class_name HUD
 extends CanvasLayer
 
-@onready var interact_label: Label = %InteractLabel
 @onready var interact_prompt: Control = $MarginContainer/InteractPrompt
 @onready var current_task_label: Label = %CurrentTaskLabel
 @onready var current_task: Control = $MarginContainer/CurrentTask
@@ -15,6 +14,7 @@ var remaining_seconds: int = 0
 
 @export var task_manager: TaskManager
 @export var round_manager: RoundManager
+@export var player: Player
 
 
 func _ready() -> void:
@@ -23,6 +23,8 @@ func _ready() -> void:
 	task_manager.task_completed.connect(on_task_completed)
 	
 	round_manager.round_progress.connect(on_round_progress)
+	
+	player.task_available.connect(on_task_available)
 	
 	countdown_timer.timeout.connect(on_countdown_tick)
 
@@ -62,3 +64,7 @@ func on_round_progress(tasks_done: int, _target_tasks: int) -> void:
 func on_task_completed(_total: int) -> void:
 	current_task.visible = false
 	tasks_complete.visible = true
+
+
+func on_task_available(available: bool) -> void:
+	interact_prompt.visible = available

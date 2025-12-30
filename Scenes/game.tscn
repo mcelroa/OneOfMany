@@ -11,9 +11,10 @@
 
 [node name="Game" type="Node2D"]
 
-[node name="HUD" parent="." node_paths=PackedStringArray("task_manager", "round_manager") instance=ExtResource("1_wowpa")]
+[node name="HUD" parent="." node_paths=PackedStringArray("task_manager", "round_manager", "player") instance=ExtResource("1_wowpa")]
 task_manager = NodePath("../TaskManager")
 round_manager = NodePath("../RoundManager")
+player = NodePath("../Player")
 
 [node name="TaskManager" parent="." instance=ExtResource("2_i6g32")]
 all_tasks = Array[ExtResource("3_1l0tm")]([ExtResource("4_wowpa"), ExtResource("3_3dryh")])
@@ -22,8 +23,9 @@ all_tasks = Array[ExtResource("3_1l0tm")]([ExtResource("4_wowpa"), ExtResource("
 target_tasks = 1
 task_manager = NodePath("../TaskManager")
 
-[node name="Player" parent="." instance=ExtResource("2_wrm1d")]
+[node name="Player" parent="." node_paths=PackedStringArray("task_manager") instance=ExtResource("2_wrm1d")]
 position = Vector2(102, 95)
+task_manager = NodePath("../TaskManager")
 
 [node name="Task" parent="." instance=ExtResource("2_qxrlw")]
 position = Vector2(826, 307)
